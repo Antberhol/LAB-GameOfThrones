@@ -12,18 +12,24 @@ def test_reyes_ejercitos():
 def test_batallas_mas_comandantes():
     batallas = lee_batallas(ruta)
     resultado = batallas_mas_comandantes(batallas, {'The North', 'The Riverlands'}, None)
-    print("Las 3 batallas con mas comandantes son:", resultado)
+    print("Las None batallas con mas comandantes son:", resultado)
     
 def test_rey_mas_victorias():
     batallas = lee_batallas(ruta)
     resultado = rey_mas_victorias(batallas, "ambos")
     print("El rey con mas victorias es:", resultado)
     
+def test_rey_mas_victorias_region():
+    batallas = lee_batallas(ruta)
+    resultado = rey_mas_victorias_por_region(batallas, "ambos")
+    print("El rey con mas victorias con rol ambos es:", resultado)
+    
 def funcion_principal():
     #test_lee_batallas()
     #test_reyes_ejercitos()
     #test_batallas_mas_comandantes()
-    test_rey_mas_victorias()
+    #test_rey_mas_victorias()
+    test_rey_mas_victorias_region()
     
 if __name__ == "__main__":
     funcion_principal()

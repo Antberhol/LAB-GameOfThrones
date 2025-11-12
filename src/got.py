@@ -124,3 +124,27 @@ def rey_mas_victorias(batallas: list[BatallaGOT], rol: str="ambos") -> str|None:
         return None
     rey_ganador = max(diccionario_victorias.items(), key=lambda x: x[1])[0]
     return rey_ganador
+
+    """
+    5.	**rey_mas_victorias_por_region**: recibe una lista de tuplas de tipo ``BatallaGOT`` y una cadena ``rol``,
+    con valor por defecto ``"ambos"``, y devuelve un diccionario que relaciona cada región con el nombre del
+    rey que acumula más victorias en batallas ocurridas en esa región. El parámetro ``rol`` tiene el mismo
+    significado que en la función anterior. Si para alguna región no hay ningún rey que haya ganado una batalla
+    con el rol especificado, en el diccionario aparecerá el valor ``None`` asociado a dicha región. Puede usar la
+    función ``rey_mas_victorias`` para resolver este ejercicio. 
+Por ejemplo, si pasamos a la función la lista completa de batallas contenida en el CSV, y 
+el parámetro ``rol`` contiene ``"ambos"``, la función devuelve un diccionario que, entre otros ítems, 
+asocia la clave ``"The Stormlands"`` a ``"Joffrey Baratheon"``; esto significa que dicho rey es el que 
+ganó más batallas de entre las batallas ocurridas en "The Stormlands", sumando tanto las victorias en batallas
+en las que fue atacante, como las victorias en batallas en las que fue atacado. _(2 puntos)_
+    """
+    
+def rey_mas_victorias_por_region(batallas: list[BatallaGOT], rol: str="ambos") -> dict[str, str|None]: 
+    batallas_por_region= defaultdict(list)
+    resultado = {} 
+    for batalla in batallas: 
+        batallas_por_region[batalla.region].append(batalla)
+    for region, lista_batallas in batallas_por_region.items():
+        rey= rey_mas_victorias(lista_batallas, rol)
+        resultado[region]= rey
+    return resultado
